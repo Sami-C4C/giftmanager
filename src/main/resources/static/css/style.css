@@ -1,0 +1,31 @@
+* {
+    margin: 0;
+    padding: 0;
+}
+
+
+.navbar-nav {
+    margin-left: auto;
+
+}
+
+body {
+    font-family: Helvetica, Arial;
+    background-image: url("photo.jpg");
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-size: 100% 100%;
+}
+
+.content {
+    color: #fff;
+    margin: 15rem;
+    text-align: left;
+    font-weight: bolder;
+}
+
+.nav-item {
+    margin-right: 50px;
+}
+
+

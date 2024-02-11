@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{layout}">
+<head>
+    <meta charset="UTF-8">
+    <title>Giftlist Details</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css"
+          integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm"
+          crossorigin="anonymous">
+</head>
+<body>
+<div layout:fragment="content" class="container my-2">
+    <h2 th:text="${giftlist.title}"></h2>
+    <h4>Deadline: <span th:text="${#dates.format(giftlist.dueDate,'yyyy-mm-dd')}"> </span></h4>
+    <!--    <h4>Budget: <span th:text="${giftlist.totalPrice}"> </span></h4>-->
+    <p>Number of Gifts: <span th:text="${#lists.size(gifts)}"> </span></p>
+    <br>
+    <table class="table table-striped table-responsive-md">
+        <tr>
+            <th>Id</th>
+            <th>Title</th>
+            <th>Category</th>
+            <th>Price</th>
+            <th>Link</th>
+            <th>Article Number</th>
+            <th>List-id</th>
+            <th>Date of Gift Creation</th>
+
+        </tr>
+        <tr th:each="gifts: ${gifts}">
+            <td th:text="${gifts.id}"></td>
+            <td th:text="${gifts.title}"></td>
+            <td th:text="${gifts.category}"></td>
+            <td th:text="${gifts.price}"></td>
+            <td th:text="${gifts.link}"></td>
+            <td th:text="${gifts.ean}"></td>
+            <td th:text="${giftlist.id}"></td>
+            <td th:text="${#dates.format(gifts.dateOfCreation,'yyyy-mm-dd')}"></td>
+        </tr>
+    </table>
+    <br><br>
+    <a th:href="@{/gifts/new-gift}" class="btn btn-warning"> Create New gift </a> <br><br>
+    <a th:href="@{/giftlists}" class="btn btn-warning">back</a>
+</div>
+</body>
+</html>

@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>New Giftlist</title>
+</head>
+<body>
+<h3>Create New List</h3>
+
+<form action="" method="POST">
+    <input type="text" name="title" placeholder="Giftlist title">
+    <select name="event" placeholder="Choose event:">
+        <!--option th:text="${event.CHRISTMAS}"></--option-->
+        <option>CHRISTMAS</option>
+        <option>BIRTHDAY</option>
+        <option>WEDDING</option>
+        <option>MOTHERS_DAY</option>
+        <option>FATHERS_DAY</option>
+        <option>OTHER</option>
+    </select>
+    <input type="date" name="dueDate" placeholder="Zieldatum">
+    <input type="number" name="totalPrice" placeholder="Budget">
+    <input type="submit" title="Create Giftlist">
+</form>
+</body>
+</html>

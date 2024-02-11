@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{layout}" xmlns="http://www.w3.org/1999/html">
+<head>
+    <meta charset="UTF-8">
+    <title>My Gift-lists</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css"
+          integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm"
+          crossorigin="anonymous">
+
+</head>
+<body>
+<div layout:fragment="content" class="container my-2">
+    <h2 align="center">All my Gift-Lists</h2><br><br>
+    <div th:if="${success}" class="alert alert-success text-center" role="alert" th:text="${success}"> [[${success}]]
+    </div>
+
+
+    <table border="1" class="table table-striped table-responsive-md">
+        <tr>
+            <th>Id</th>
+            <th>Title</th>
+            <th>Event</th>
+            <th>Total Price</th>
+            <th>Budget</th>
+            <th>Creation-Date</th>
+            <th>Action</th>
+        </tr>
+        <tr th:each="giftlist: ${giftlists}">
+            <td th:text="${giftlist.id}"></td>
+            <td th:text="${giftlist.title}"></td>
+            <td th:text="${giftlist.event}"></td>
+            <td th:text="${giftlist.totalPrice}"></td>
+            <td th:text="${giftlist.budget}"></td>
+            <td th:text="${#dates.format(giftlist.dueDate,'yyyy-mm-dd')}"></td>
+
+            <td>
+                <a class="btn-sm btn-warning m-1" th:href="@{'/giftlists/' + ${giftlist.id}}">List Details</a>
+                <a class="btn-sm btn-secondary m-1" th:href="@{'/giftlists/edit/' + ${giftlist.id}}">Edit</a>
+                <a class="btn-sm btn-danger m-1" th:href="@{'giftlists/delete/' + ${giftlist.id}}">Delete</a>
+
+            </td>
+        </tr>
+    </table>
+
+
+    <!-- <ul>
+         <li th:each="giftlist: ${giftlists}">
+             <span th:text="${giftlist.title}"></span>
+             &lt;!&ndash;  <span th:text="${giftlist.event}"></span> &ndash;&gt;
+             <a th:href="@{/giftlists/list_details.html}">Show List Details</a>
+             &lt;!&ndash;            (id=${giftlist.id})&ndash;&gt;
+         </li>
+     </ul>-->
+    <!--    <div th:each="giftlist: ${giftlists}">-->
+    <!--        <p>Total Price of Gifts: <span th:text="${giftlist.totalPrice}"> </span></p>-->
+    <!--    </div>-->
+    <br><br>
+    <!--    <a class="btn btn-warning m-1" th:href="@{'/giftlists/' + ${giftlist.id}}">List Details</a>-->
+
+    <a th:href="@{/giftlists/new-list}" class="btn btn-warning">Create New List</a>
+    <a th:href="@{/}" class="btn btn-warning">Back</a>
+
+
+</div>
+</body>
+</html>
