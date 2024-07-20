@@ -1,9 +1,6 @@
 package de.thb.giftmanager.entity;
 
 import javax.persistence.*;
-import javax.validation.constraints.Min;
-import javax.validation.constraints.Positive;
-
 
 import java.util.Date;
 import java.util.List;

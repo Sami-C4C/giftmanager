@@ -15,11 +15,13 @@ body {
     background-repeat: no-repeat;
     background-attachment: fixed;
     background-size: 100% 100%;
+    background-size: cover;
+    background-position: center;
 }
 
 .content {
     color: #fff;
-    margin: 15rem;
+    margin: 15rem 1rem;
     text-align: left;
     font-weight: bolder;
 }
