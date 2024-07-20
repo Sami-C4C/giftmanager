@@ -1,9 +1,5 @@
-![Screenshot from 2024-07-20 20-43-21.png](..%2F..%2F..%2F..%2FPictures%2FScreenshots%2FScreenshot%20from%202024-07-20%2020-43-21.png)
-
-![Screenshot from 2024-07-20 20-44-02.png](..%2F..%2F..%2F..%2FPictures%2FScreenshots%2FScreenshot%20from%202024-07-20%2020-44-02.png)
-
-![Screenshot from 2024-07-20 20-44-21.png](..%2F..%2F..%2F..%2FPictures%2FScreenshots%2FScreenshot%20from%202024-07-20%2020-44-21.png)
-
-![Screenshot from 2024-07-20 20-44-35.png](..%2F..%2F..%2F..%2FPictures%2FScreenshots%2FScreenshot%20from%202024-07-20%2020-44-35.png)
-
-![Screenshot from 2024-07-20 20-44-53.png](..%2F..%2F..%2F..%2FPictures%2FScreenshots%2FScreenshot%20from%202024-07-20%2020-44-53.png)
+![Uploading Screenshot from 2024-07-20 20-43-21.png…]()
+![Screenshot from 2024-07-20 20-44-02](https://github.com/user-attachments/assets/47978a0f-21aa-4958-a50d-b167fbf9c924)
+![Screenshot from 2024-07-20 20-44-21](https://github.com/user-attachments/assets/185c3224-1118-4b38-8870-3c2117a25c63)
+![Screenshot from 2024-07-20 20-44-35](https://github.com/user-attachments/assets/b0616b9e-2010-4f1f-9c17-0cb40ec10aee)
+![Screenshot from 2024-07-20 20-44-53](https://github.com/user-attachments/assets/03c7b486-165e-4cd4-a93f-9c9acd035d5b)
