@@ -5,7 +5,6 @@ import de.thb.giftmanager.entity.GiftList;
 import de.thb.giftmanager.exception.GiftListNotFoundException;
 import de.thb.giftmanager.services.GiftListService;
 import org.springframework.beans.factory.annotation.Autowired;
-
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -21,7 +20,6 @@ public class GiftListController {
     @Autowired
     private GiftListService giftListService;
 
-
     @GetMapping("/giftlists")
     public String getAllGiftLists(Model model) {
         List<GiftList> giftLists = giftListService.getAllGiftLists();
@@ -29,20 +27,19 @@ public class GiftListController {
         return "giftlists";
     }
 
-    @GetMapping("giftlists/{id}")
+    @GetMapping("/giftlists/{id}")
     public String showGiftListDetails(@PathVariable("id") Long id, Model model) {
-        GiftList giftlist = giftListService.getGiftListByID(id).orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND));
-        model.addAttribute("giftlist", giftlist);
+        GiftList giftList = giftListService.getGiftListByID(id).orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND));
+        model.addAttribute("giftlist", giftList);
 
-        List<Gift> gifts = giftlist.getGifts();
+        List<Gift> gifts = giftList.getGifts();
         model.addAttribute("gifts", gifts);
 
         return "list_details";
     }
 
-
     @GetMapping("/giftlists/new-list")
-    public String creatNewGiftList(Model model) {
+    public String createNewGiftList(Model model) {
         GiftList giftList = new GiftList();
         model.addAttribute("giftlist", giftList);
         model.addAttribute("pageTitle", "Create New GiftList");
@@ -52,7 +49,6 @@ public class GiftListController {
     @PostMapping("/giftlists/save")
     public String saveGiftList(GiftList giftList, RedirectAttributes redirectAttributes) {
         giftListService.saveGiftList(giftList);
-
         redirectAttributes.addFlashAttribute("success", "Giftlist is saved successfully.");
         return "redirect:/giftlists";
     }
@@ -65,24 +61,19 @@ public class GiftListController {
             model.addAttribute("pageTitle", "Edit GiftList ==>[ID: " + id + "]");
             return "new-list";
         } catch (GiftListNotFoundException ex) {
-            redirectAttributes.addFlashAttribute("success", ex.getMessage());
+            redirectAttributes.addFlashAttribute("error", ex.getMessage());
             return "redirect:/giftlists";
         }
     }
-
 
     @GetMapping("/giftlists/delete/{id}")
     public String deleteGiftList(@PathVariable("id") Long id, RedirectAttributes redirectAttributes) {
         try {
             giftListService.deleteGiftList(id);
             redirectAttributes.addFlashAttribute("success", "GiftList with ID " + id + " is deleted successfully");
-
         } catch (GiftListNotFoundException ex) {
-            redirectAttributes.addFlashAttribute("success", ex.getMessage());
+            redirectAttributes.addFlashAttribute("error", ex.getMessage());
         }
         return "redirect:/giftlists";
-
     }
-
-
 }

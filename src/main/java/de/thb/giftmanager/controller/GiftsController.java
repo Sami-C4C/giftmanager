@@ -15,7 +15,6 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import java.util.List;
 
-
 @Controller
 @RequestMapping("/")
 public class GiftsController {
@@ -26,7 +25,6 @@ public class GiftsController {
     @Autowired
     private GiftListService giftListService;
 
-
     @GetMapping("/gifts")
     public String showGiftsPool(Model model) {
         List<Gift> gifts = giftsService.getAllGifts();
@@ -34,19 +32,15 @@ public class GiftsController {
         return "gifts";
     }
 
-
-
     @GetMapping("/gifts/new-gift")
-    public String creatNewGift(Model model) {
+    public String createNewGift(Model model) {
         Gift gift = new Gift();
-
         List<GiftList> giftLists = giftListService.getAllGiftLists();
         model.addAttribute("gift", gift);
         model.addAttribute("pageTitle", "Create New Gift");
         model.addAttribute("giftLists", giftLists);
         return "new-gift";
     }
-
 
     @PostMapping("/gifts/save")
     public String saveGift(Gift gift, RedirectAttributes redirectAttributes) {
@@ -55,49 +49,35 @@ public class GiftsController {
         return "redirect:/gifts";
     }
 
-
     @GetMapping("/gifts/edit/{id}")
     public String editGift(@PathVariable("id") Long id, Model model, RedirectAttributes redirectAttributes) {
         try {
-
             Gift gift = giftsService.getGift(id);
             model.addAttribute("gift", gift);
             model.addAttribute("pageTitle", "Edit Gift ==>[ID: " + id + "]");
-            model.addAttribute("giftLists", gift.getGiftList());
+            model.addAttribute("giftLists", giftListService.getAllGiftLists());
             return "new-gift";
         } catch (GiftNotFoundException ex) {
-            redirectAttributes.addFlashAttribute("success", ex.getMessage());
+            redirectAttributes.addFlashAttribute("error", ex.getMessage());
             return "redirect:/gifts";
         }
     }
-
 
     @GetMapping("/gifts/delete/{id}")
     public String deleteGift(@PathVariable("id") Long id, RedirectAttributes redirectAttributes) {
         try {
             giftsService.deleteGift(id);
             redirectAttributes.addFlashAttribute("success", "Gift with ID " + id + " is deleted successfully");
-
         } catch (GiftNotFoundException ex) {
-            redirectAttributes.addFlashAttribute("success", ex.getMessage());
+            redirectAttributes.addFlashAttribute("error", ex.getMessage());
         }
         return "redirect:/gifts";
-
     }
 
-
-
-    @GetMapping("gifts/{id}")
+    @GetMapping("/gifts/{id}")
     public String showGiftsDetails(@PathVariable("id") Long id, Model model) {
-
-
         Gift gift = giftsService.getGiftByID(id).orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND));
         model.addAttribute("gift", gift);
-
-
         return "gift_details";
     }
-
-
-
 }

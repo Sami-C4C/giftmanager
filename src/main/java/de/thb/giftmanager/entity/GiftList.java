@@ -1,13 +1,12 @@
 package de.thb.giftmanager.entity;
 
-import javax.persistence.*;
-
-import java.util.Date;
-import java.util.List;
-
 import lombok.*;
 import org.springframework.format.annotation.DateTimeFormat;
 
+import javax.persistence.*;
+import java.util.ArrayList;
+import java.util.Date;
+import java.util.List;
 
 @NoArgsConstructor
 @AllArgsConstructor
@@ -24,13 +23,12 @@ public class GiftList {
     @Column(name = "title")
     private String title;
 
-
     @Enumerated(EnumType.STRING)
     @Column(name = "event")
     private Event event;
 
     @Column(name = "due_date")
-    @DateTimeFormat(pattern = "yyyy-mm-dd")
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
     private Date dueDate;
 
     @Column(name = "total_price")
@@ -39,10 +37,16 @@ public class GiftList {
     @Column(name = "budget")
     private double budget;
 
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "giftList", orphanRemoval = true)
+    private List<Gift> gifts = new ArrayList<>();
 
-    @OneToMany(cascade = CascadeType.ALL,mappedBy = "giftList")
-    private List<Gift> gifts;
+    public double calculateTotalPrice() {
+        return gifts != null ? gifts.stream().mapToDouble(Gift::getPrice).sum() : 0;
+    }
 
-
-
+    @PrePersist
+    @PreUpdate
+    public void updateTotalPrice() {
+        this.totalPrice = calculateTotalPrice();
+    }
 }
