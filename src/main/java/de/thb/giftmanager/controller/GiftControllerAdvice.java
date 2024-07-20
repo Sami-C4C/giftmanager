@@ -8,13 +8,12 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.ResponseStatus;
 
 @ControllerAdvice
-
 public class GiftControllerAdvice {
-    @ResponseBody
-    @ExceptionHandler
-    @ResponseStatus(HttpStatus.FORBIDDEN)
-    String overBudgetHandler(OverBudgetException exception) {
-        return exception.getMessage();
 
+    @ResponseBody
+    @ExceptionHandler(OverBudgetException.class)
+    @ResponseStatus(HttpStatus.FORBIDDEN)
+    public String overBudgetHandler(OverBudgetException exception) {
+        return exception.getMessage();
     }
 }
